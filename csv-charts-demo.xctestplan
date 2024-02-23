@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "F9C543C3-EFC8-4D32-B438-EEE99D0FC629",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testExecutionOrdering" : "random"
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:csv-charts-demo.xcodeproj",
+        "identifier" : "7267DC7C2B88CA1B00B2A58D",
+        "name" : "csv-charts-demoTests"
+      }
+    }
+  ],
+  "version" : 1
+}
