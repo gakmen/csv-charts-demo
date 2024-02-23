@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7267DC7E2B88CA1B00B2A58D /* csv_charts_demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7267DC732B88CA1A00B2A58D /* csv_charts_demo.framework */; };
 		7267DC842B88CA1B00B2A58D /* csv_charts_demo.h in Headers */ = {isa = PBXBuildFile; fileRef = 7267DC762B88CA1B00B2A58D /* csv_charts_demo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7267DC8E2B88EFAE00B2A58D /* ChartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7267DC8D2B88EFAE00B2A58D /* ChartModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -25,6 +26,7 @@
 		7267DC732B88CA1A00B2A58D /* csv_charts_demo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = csv_charts_demo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7267DC762B88CA1B00B2A58D /* csv_charts_demo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = csv_charts_demo.h; sourceTree = "<group>"; };
 		7267DC7D2B88CA1B00B2A58D /* csv-charts-demoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "csv-charts-demoTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7267DC8D2B88EFAE00B2A58D /* ChartModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 			isa = PBXGroup;
 			children = (
 				7267DC762B88CA1B00B2A58D /* csv_charts_demo.h */,
+				7267DC8D2B88EFAE00B2A58D /* ChartModel.swift */,
 			);
 			path = "csv-charts-demo";
 			sourceTree = "<group>";
@@ -141,6 +144,7 @@
 				TargetAttributes = {
 					7267DC722B88CA1A00B2A58D = {
 						CreatedOnToolsVersion = 15.2;
+						LastSwiftMigration = 1520;
 					};
 					7267DC7C2B88CA1B00B2A58D = {
 						CreatedOnToolsVersion = 15.2;
@@ -188,6 +192,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7267DC8E2B88EFAE00B2A58D /* ChartModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,6 +341,7 @@
 		7267DC882B88CA1B00B2A58D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -360,6 +366,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -367,6 +374,7 @@
 		7267DC892B88CA1B00B2A58D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -398,6 +406,7 @@
 		7267DC8B2B88CA1B00B2A58D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4M8K7D2NVG;
@@ -413,6 +422,7 @@
 		7267DC8C2B88CA1B00B2A58D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4M8K7D2NVG;
