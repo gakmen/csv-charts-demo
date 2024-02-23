@@ -7,9 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7267DC782B88CA1B00B2A58D /* csv_charts_demo.docc in Sources */ = {isa = PBXBuildFile; fileRef = 7267DC772B88CA1B00B2A58D /* csv_charts_demo.docc */; };
 		7267DC7E2B88CA1B00B2A58D /* csv_charts_demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7267DC732B88CA1A00B2A58D /* csv_charts_demo.framework */; };
-		7267DC832B88CA1B00B2A58D /* csv_charts_demoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7267DC822B88CA1B00B2A58D /* csv_charts_demoTests.swift */; };
 		7267DC842B88CA1B00B2A58D /* csv_charts_demo.h in Headers */ = {isa = PBXBuildFile; fileRef = 7267DC762B88CA1B00B2A58D /* csv_charts_demo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
@@ -26,9 +24,7 @@
 /* Begin PBXFileReference section */
 		7267DC732B88CA1A00B2A58D /* csv_charts_demo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = csv_charts_demo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7267DC762B88CA1B00B2A58D /* csv_charts_demo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = csv_charts_demo.h; sourceTree = "<group>"; };
-		7267DC772B88CA1B00B2A58D /* csv_charts_demo.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = csv_charts_demo.docc; sourceTree = "<group>"; };
 		7267DC7D2B88CA1B00B2A58D /* csv-charts-demoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "csv-charts-demoTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		7267DC822B88CA1B00B2A58D /* csv_charts_demoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = csv_charts_demoTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,7 +68,6 @@
 			isa = PBXGroup;
 			children = (
 				7267DC762B88CA1B00B2A58D /* csv_charts_demo.h */,
-				7267DC772B88CA1B00B2A58D /* csv_charts_demo.docc */,
 			);
 			path = "csv-charts-demo";
 			sourceTree = "<group>";
@@ -80,7 +75,6 @@
 		7267DC812B88CA1B00B2A58D /* csv-charts-demoTests */ = {
 			isa = PBXGroup;
 			children = (
-				7267DC822B88CA1B00B2A58D /* csv_charts_demoTests.swift */,
 			);
 			path = "csv-charts-demoTests";
 			sourceTree = "<group>";
@@ -194,7 +188,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7267DC782B88CA1B00B2A58D /* csv_charts_demo.docc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,7 +195,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7267DC832B88CA1B00B2A58D /* csv_charts_demoTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
