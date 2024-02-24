@@ -25,6 +25,16 @@ class ChartLoaderTests: XCTestCase {
         XCTAssertEqual(client.requestedURLs, [url])
     }
     
+    func test_load_requestsDataFromURLTwice() {
+        let url = URL(string: "file:///path/to/someFile.csv")!
+        let (sut, client) = makeSUT(with: url)
+        
+        sut.load()
+        sut.load()
+        
+        XCTAssertEqual(client.requestedURLs, [url, url])
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(with url: URL = URL(string: "file:///path/to/placeholderFile.csv")!) -> (ChartLoader, LocalClientSpy) {
