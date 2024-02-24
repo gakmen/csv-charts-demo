@@ -7,9 +7,21 @@
 
 import XCTest
 
+class ChartLoader {
+    
+}
+
+struct LocalStoreSpy {
+    var requestedURL: URL?
+}
+
 class ChartLoaderTests: XCTestCase {
     
-    func test() {
+    func test_init_doesNotRequestDataFromURL() {
+        let store = LocalStoreSpy()
+        let sut = ChartLoader()
         
+        XCTAssertNil(store.requestedURL)
     }
+    
 }
