@@ -6,24 +6,7 @@
 //
 
 import XCTest
-
-protocol LocalClient {
-    func get(from url: URL)
-}
-
-class ChartLoader {
-    let client: LocalClient
-    let url: URL
-    
-    init(client: LocalClient, url: URL) {
-        self.client = client
-        self.url = url
-    }
-    
-    func load() {
-        client.get(from: url)
-    }
-}
+import csv_charts_demo
 
 class ChartLoaderTests: XCTestCase {
     
