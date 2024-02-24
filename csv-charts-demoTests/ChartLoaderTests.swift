@@ -13,7 +13,7 @@ class ChartLoaderTests: XCTestCase {
     func test_init_doesNotRequestDataFromURL() {
         let (sut, client) = makeSUT()
         
-        XCTAssertNil(client.requestedURL)
+        XCTAssertTrue(client.requestedURLs.isEmpty)
     }
     
     func test_load_requestsDataFromURL() {
@@ -22,7 +22,7 @@ class ChartLoaderTests: XCTestCase {
         
         sut.load()
         
-        XCTAssertEqual(client.requestedURL, url)
+        XCTAssertEqual(client.requestedURLs, [url])
     }
     
     // MARK: - Helpers
@@ -35,10 +35,10 @@ class ChartLoaderTests: XCTestCase {
     }
     
     private class LocalClientSpy: LocalClient {
-        var requestedURL: URL?
+        var requestedURLs = [URL]()
         
         func get(from url: URL) {
-            requestedURL = url
+            requestedURLs.append(url)
         }
     }
 }
