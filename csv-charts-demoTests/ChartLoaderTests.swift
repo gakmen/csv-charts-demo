@@ -20,7 +20,7 @@ class ChartLoaderTests: XCTestCase {
         let url = URL(string: "file:///path/to/someFile.csv")!
         let (sut, client) = makeSUT(with: url)
         
-        sut.load()
+        sut.load() { _ in }
         
         XCTAssertEqual(client.requestedURLs, [url])
     }
@@ -29,10 +29,25 @@ class ChartLoaderTests: XCTestCase {
         let url = URL(string: "file:///path/to/someFile.csv")!
         let (sut, client) = makeSUT(with: url)
         
-        sut.load()
-        sut.load()
+        sut.load() { _ in }
+        sut.load() { _ in }
         
         XCTAssertEqual(client.requestedURLs, [url, url])
+    }
+    
+    func test_load_deliversNoFileErrorOnClientError() {
+        let (sut, client) = makeSUT()
+        let anyError = NSError(domain: "any error", code: 0)
+        
+        let exp = expectation(description: "Wait for client completion with error")
+        sut.load { receivedError in
+            XCTAssertEqual(receivedError, .noFile)
+            exp.fulfill()
+        }
+        
+        client.complete(with: anyError)
+        
+        wait(for: [exp], timeout: 0.1)
     }
     
     // MARK: - Helpers
@@ -45,10 +60,16 @@ class ChartLoaderTests: XCTestCase {
     }
     
     private class LocalClientSpy: LocalClient {
+        var messages = [(url: URL, completion: (Error) -> Void)]()
         var requestedURLs = [URL]()
         
-        func get(from url: URL) {
+        func get(from url: URL, completion: @escaping (Error) -> Void) {
             requestedURLs.append(url)
+            messages.append((url, completion))
+        }
+        
+        func complete(with error: Error, at index: Int = 0) {
+            messages[index].completion(error)
         }
     }
 }
