@@ -11,9 +11,9 @@ import csv_charts_demo
 class ChartLoaderTests: XCTestCase {
     
     func test_init_doesNotRequestDataFromURL() {
-        let (sut, client) = makeSUT()
+        let (_, client) = makeSUT()
         
-        XCTAssertTrue(client.requestedURLs.isEmpty)
+        XCTAssertTrue(client.messages.isEmpty)
     }
     
     func test_load_requestsDataFromURL() {
@@ -61,10 +61,11 @@ class ChartLoaderTests: XCTestCase {
     
     private class LocalClientSpy: LocalClient {
         var messages = [(url: URL, completion: (Error) -> Void)]()
-        var requestedURLs = [URL]()
+        var requestedURLs: [URL] {
+            messages.map { $0.url }
+        }
         
         func get(from url: URL, completion: @escaping (Error) -> Void) {
-            requestedURLs.append(url)
             messages.append((url, completion))
         }
         
