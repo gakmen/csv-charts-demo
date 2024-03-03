@@ -6,7 +6,9 @@
 //
 
 public protocol LocalClient {
-    func get(from url: URL, completion: @escaping (Swift.Error) -> Void)
+    typealias ClientResult = Result<Data, Error>
+    
+    func get(from url: URL, completion: @escaping (ClientResult) -> Void)
 }
 
 public final class ChartLoader {
@@ -20,11 +22,17 @@ public final class ChartLoader {
     
     public enum Error: Swift.Error {
         case noFile
+        case emptyFile
     }
     
     public func load(completion: @escaping (Error) -> Void) {
-        client.get(from: url) { error in
-            completion(.noFile)
+        client.get(from: url) { result in
+            switch result {
+            case .success(_):
+                completion(.emptyFile)
+            case .failure(_):
+                completion(.noFile)
+            }
         }
     }
 }

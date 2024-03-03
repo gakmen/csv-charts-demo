@@ -50,6 +50,21 @@ class ChartLoaderTests: XCTestCase {
         wait(for: [exp], timeout: 0.1)
     }
     
+    func test_load_deliversEmptyFileErrorOnEmptyFile() {
+        let (sut, client) = makeSUT()
+        let emptyCsv = "".data(using: .utf8)!
+        
+        let exp = expectation(description: "Wait for client completion with data")
+        sut.load { receivedError in
+            XCTAssertEqual(receivedError, .emptyFile)
+            exp.fulfill()
+        }
+        
+        client.complete(with: emptyCsv)
+        
+        wait(for: [exp], timeout: 0.1)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(with url: URL = URL(string: "file:///path/to/placeholderFile.csv")!) -> (ChartLoader, LocalClientSpy) {
@@ -60,17 +75,21 @@ class ChartLoaderTests: XCTestCase {
     }
     
     private class LocalClientSpy: LocalClient {
-        var messages = [(url: URL, completion: (Error) -> Void)]()
+        var messages = [(url: URL, completion: (ClientResult) -> Void)]()
         var requestedURLs: [URL] {
             messages.map { $0.url }
         }
         
-        func get(from url: URL, completion: @escaping (Error) -> Void) {
+        func get(from url: URL, completion: @escaping (ClientResult) -> Void) {
             messages.append((url, completion))
         }
         
         func complete(with error: Error, at index: Int = 0) {
-            messages[index].completion(error)
+            messages[index].completion(.failure(error))
+        }
+        
+        func complete(with data: Data, at index: Int = 0) {
+            messages[index].completion(.success(data))
         }
     }
 }
