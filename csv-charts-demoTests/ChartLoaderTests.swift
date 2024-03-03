@@ -39,30 +39,22 @@ class ChartLoaderTests: XCTestCase {
         let (sut, client) = makeSUT()
         let anyError = NSError(domain: "any error", code: 0)
         
-        let exp = expectation(description: "Wait for client completion with error")
-        sut.load { receivedError in
-            XCTAssertEqual(receivedError, .noFile)
-            exp.fulfill()
-        }
-        
+        var capturedErrors = [ChartLoader.Error]()
+        sut.load { capturedErrors.append($0) }
         client.complete(with: anyError)
         
-        wait(for: [exp], timeout: 0.1)
+        XCTAssertEqual(capturedErrors, [.noFile])
     }
     
     func test_load_deliversEmptyFileErrorOnEmptyFile() {
         let (sut, client) = makeSUT()
         let emptyCsv = "".data(using: .utf8)!
         
-        let exp = expectation(description: "Wait for client completion with data")
-        sut.load { receivedError in
-            XCTAssertEqual(receivedError, .emptyFile)
-            exp.fulfill()
-        }
-        
+        var capturedErrors = [ChartLoader.Error]()
+        sut.load { capturedErrors.append($0) }
         client.complete(with: emptyCsv)
         
-        wait(for: [exp], timeout: 0.1)
+        XCTAssertEqual(capturedErrors, [.emptyFile])
     }
     
     // MARK: - Helpers
