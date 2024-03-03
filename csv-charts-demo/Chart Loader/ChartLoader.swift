@@ -23,14 +23,16 @@ public final class ChartLoader {
     public enum Error: Swift.Error {
         case noFile
         case emptyFile
+        case invalidCsv
     }
     
     public func load(completion: @escaping (Error) -> Void) {
         client.get(from: url) { result in
             switch result {
-            case .success(_):
-                completion(.emptyFile)
-            case .failure(_):
+            case let .success(data):
+                if data.isEmpty { completion(.emptyFile) }
+                else { completion(.invalidCsv) }
+            case .failure:
                 completion(.noFile)
             }
         }

@@ -57,6 +57,17 @@ class ChartLoaderTests: XCTestCase {
         XCTAssertEqual(capturedErrors, [.emptyFile])
     }
     
+    func test_load_deliversInvalidDataErrorOnInvalidFileData() {
+        let (sut, client) = makeSUT()
+        let invalidCsv = makeInvalidDataCsv()
+        
+        var capturedErrors = [ChartLoader.Error]()
+        sut.load { capturedErrors.append($0) }
+        client.complete(with: invalidCsv)
+        
+        XCTAssertEqual(capturedErrors, [.invalidCsv])
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(with url: URL = URL(string: "file:///path/to/placeholderFile.csv")!) -> (ChartLoader, LocalClientSpy) {
@@ -83,5 +94,16 @@ class ChartLoaderTests: XCTestCase {
         func complete(with data: Data, at index: Int = 0) {
             messages[index].completion(.success(data))
         }
+    }
+    
+    private func makeInvalidDataCsv() -> Data {
+        let fillerData = ["filler1", "filler2", "filler3"]
+        
+        var csvString = "column title\n"
+        fillerData.forEach {
+            csvString += "\($0)\n"
+        }
+        
+        return csvString.data(using: .utf8)!
     }
 }
